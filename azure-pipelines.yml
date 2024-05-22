@@ -3,6 +3,8 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+name: $(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+
 trigger:
 - main
 
@@ -11,4 +13,5 @@ pool:
 
 steps:
 - pwsh: ./helloworld.ps1
-- pwsh: ./VersionAssemblies.ps1
+# - pwsh: ./VersionAssemblies.ps1
+- pwsh: echo $(Build.BuildNumber) //output updated build number
