@@ -11,3 +11,4 @@ pool:
 
 steps:
 - pwsh: ./helloworld.ps1
+- pwsh: ./VersionAssemblies.ps1
