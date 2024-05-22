@@ -10,4 +10,4 @@ pool:
   vmImage: windows-latest
 
 steps:
-- pwsh: ./helloworld.ps
+- pwsh: ./helloworld.ps1
