@@ -13,7 +13,10 @@ pool:
 
 steps:
 - pwsh: ./setvars.ps1
-- pwsh: ./helloworld.ps1
+- task: PowerShell@2
+  inputs:
+    filePath: './hellowworld.ps1'
+    arguments: '-sauceArgument "$(sauce)" -secretSauceArgument "$(secret.Sauce)"'
 # - pwsh: ./VersionAssemblies.ps1
 - pwsh: echo $(Build.BuildNumber) //output updated build number
 
