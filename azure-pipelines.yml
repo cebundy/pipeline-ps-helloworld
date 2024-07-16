@@ -11,6 +11,10 @@ trigger:
 pool:
   vmImage: windows-latest
 
+variables:
+- name: var1
+  value: 'var1'
+
 steps:
 - pwsh: ./setvars.ps1
 - task: PowerShell@2
@@ -26,12 +30,7 @@ steps:
     targetType: 'inline'
     script: |
       # Write your PowerShell commands here.
-      
-      Param(
-         [string]$sauceArgument,
-         [string]$secretSauceArgument
-      )
-      Write-Host No problem reading $env:SAUCE or $sauceArgument
+
+      Write-Host No problem reading $env:SAUCE
       Write-Host But I cannot read $env:SECRET_SAUCE
-      Write-Host But I can read $secretSauceArgument "(but the log is redacted so I do not
-                 spoil the secret)"
+      Write-Host I can read var1: $(var1)
