@@ -12,6 +12,8 @@ pool:
   vmImage: windows-latest
 
 steps:
+- pwsh: ./setvars.ps1
 - pwsh: ./helloworld.ps1
 # - pwsh: ./VersionAssemblies.ps1
 - pwsh: echo $(Build.BuildNumber) //output updated build number
+
