@@ -9,7 +9,7 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest
 
 variables:
 - name: var1
@@ -26,40 +26,17 @@ steps:
 # - pwsh: ./VersionAssemblies.ps1
 - pwsh: echo $(Build.BuildNumber) //output updated build number
 
-# - pwsh: |
-#    Write-Host "##vso[task.setvariable variable=sauce]peeled tomatoes"
-#    Write-Host "##vso[task.setvariable variable=secret.Sauce;issecret=true]peeled tomatoes with garlic"
-# - task: PowerShell@2
-#   inputs:
-#     targetType: 'inline'
-#     script: |
-#       # Write your PowerShell commands here.
-
-#       Write-Host No problem reading $(sauce)
-#       Write-Host But I cannot read $env:SECRET_SAUCE
-#       Write-Host But I can read $(secret.Sauce) "(but the log is redacted so I do not spoil the secret)"
-#       Write-Host Can I read mySecret? $(mySecret)
-#       Write-Host Can I read secret.sauce? $(secret.Sauce)
-
-# - task: CmdLine@2
-#   inputs:
-#     script: |
-#       echo "No problem reading $(sauce)""
-#       echo "But I cannot read $SECRET_SAUCE"
-#       echo "But I can read $(secret.Sauce) (but the log is redacted so I do not spoil the secret)"
-- task: Bash@3
+- pwsh: |
+   Write-Host "##vso[task.setvariable variable=sauce]peeled tomatoes"
+   Write-Host "##vso[task.setvariable variable=secret.Sauce;issecret=true]peeled tomatoes with garlic"
+- task: PowerShell@2
   inputs:
     targetType: 'inline'
     script: |
-      echo "##vso[task.setvariable variable=sauce]crushed tomatoes"
-      echo "##vso[task.setvariable variable=secret.Sauce;issecret=true]crushed tomatoes with garlic"
-      echo "No problem reading $SAUCE"
-      echo "But I cannot read $SECRET_SAUCE"
+      # Write your PowerShell commands here.
 
-- bash: |
-    echo "No problem reading $SAUCE"
-    echo "But I cannot read $SECRET_SAUCE"
-  
-
-
-
+      Write-Host No problem reading $(sauce)
+      Write-Host But I cannot read $env:SECRET_SAUCE
+      Write-Host But I can read $(secret.Sauce) "(but the log is redacted so I do not spoil the secret)"
+      Write-Host Can I read mySecret? $(mySecret)
+      Write-Host Can I read secret.sauce? $(secret.Sauce)
