@@ -45,7 +45,7 @@ steps:
   inputs:
     script: |
       echo "No problem reading $(sauce)""
-      echo "But I cannot read $env:SECRET_SAUCE"
+      echo "But I cannot read $SECRET_SAUCE"
       echo "But I can read $(secret.Sauce) (but the log is redacted so I do not spoil the secret)"
 
 
