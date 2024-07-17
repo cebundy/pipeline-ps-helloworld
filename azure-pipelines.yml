@@ -35,9 +35,19 @@ steps:
     script: |
       # Write your PowerShell commands here.
 
-      Write-Host No problem reading $env:SAUCE
       Write-Host No problem reading $(sauce)
       Write-Host But I cannot read $env:SECRET_SAUCE
-      Write-Host I can read var1: $(var1)
+      Write-Host But I can read $(secret.Sauce) "(but the log is redacted so I do not spoil the secret)"
       Write-Host Can I read mySecret? $(mySecret)
       Write-Host Can I read secret.sauce? $(secret.Sauce)
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      echo "No problem reading $(sauce)""
+      echo "But I cannot read $env:SECRET_SAUCE"
+      echo "But I can read $(secret.Sauce) (but the log is redacted so I do not spoil the secret)"
+
+
+
+
