@@ -37,6 +37,6 @@ steps:
 
       Write-Host No problem reading $(sauce)
       Write-Host But I cannot read $env:SECRET_SAUCE
-      Write-Host But I can read $(secret.Sauce) "(but the log is redacted so I do not spoil the secret)"
+      Write-Host But I can read $(secret.Sauce) (but the log is redacted so I do not spoil the secret)
       Write-Host Can I read mySecret? $(mySecret)
       Write-Host Can I read secret.sauce? $(secret.Sauce)
