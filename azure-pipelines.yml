@@ -9,7 +9,7 @@ trigger:
 - main
 
 pool:
-  vmImage: windows-latest
+  vmImage: ubuntu-latest
 
 variables:
 - name: var1
@@ -47,7 +47,17 @@ steps:
       echo "No problem reading $(sauce)""
       echo "But I cannot read $SECRET_SAUCE"
       echo "But I can read $(secret.Sauce) (but the log is redacted so I do not spoil the secret)"
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo "No problem reading $SAUCE"
+      echo "But I cannot read $SECRET_SAUCE"
 
+- bash: |
+    echo "No problem reading $SAUCE"
+    echo "But I cannot read $SECRET_SAUCE"
+  
 
 
 
