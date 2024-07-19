@@ -26,8 +26,8 @@ steps:
 # - pwsh: ./VersionAssemblies.ps1
 
 - pwsh: |
-    az pipelines build list
-  displayName: 'Show build list --organization https://dev.azure.com/v-catherbund/'
+    az pipelines build list --organization https://dev.azure.com/v-catherbund/ --project "my project"
+  displayName: 'Show build list '
   env:
     AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)  
 
