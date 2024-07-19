@@ -24,7 +24,12 @@ steps:
     filePath: './helloworld.ps1'
     arguments: '-sauceArgument "$(sauce)" -secretSauceArgument "$(secret.Sauce)"'
 # - pwsh: ./VersionAssemblies.ps1
-- pwsh: echo $(Build.BuildNumber) //output updated build number
+
+- pwsh: |
+    az pipelines build list
+  displayName: 'Show build list'
+  env:
+    AZURE_DEVOPS_EXT_PAT: $(System.Access  
 
 - pwsh: |
    Write-Host "##vso[task.setvariable variable=sauce]peeled tomatoes"
