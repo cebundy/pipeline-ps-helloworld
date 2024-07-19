@@ -18,30 +18,30 @@ variables:
   value: $(secret.Sauce)
 
 steps:
-- pwsh: ./setvars.ps1
-- task: PowerShell@2
-  inputs:
-    filePath: './helloworld.ps1'
-    arguments: '-sauceArgument "$(sauce)" -secretSauceArgument "$(secret.Sauce)"'
-# - pwsh: ./VersionAssemblies.ps1
+# - pwsh: ./setvars.ps1
+# - task: PowerShell@2
+#   inputs:
+#     filePath: './helloworld.ps1'
+#     arguments: '-sauceArgument "$(sauce)" -secretSauceArgument "$(secret.Sauce)"'
+# # - pwsh: ./VersionAssemblies.ps1
 
 - pwsh: |
-    az pipelines build list --organization https://dev.azure.com/v-catherbund/ --project 'my project'
+    az pipelines build list --organization $(System.TeamFoundationCollectionUri) --project $(System.TeamProject)
   displayName: 'Show build list '
   env:
     AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)  
 
-- pwsh: |
-   Write-Host "##vso[task.setvariable variable=sauce]peeled tomatoes"
-   Write-Host "##vso[task.setvariable variable=secret.Sauce;issecret=true]peeled tomatoes with garlic"
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Write your PowerShell commands here.
+# - pwsh: |
+#    Write-Host "##vso[task.setvariable variable=sauce]peeled tomatoes"
+#    Write-Host "##vso[task.setvariable variable=secret.Sauce;issecret=true]peeled tomatoes with garlic"
+# - task: PowerShell@2
+#   inputs:
+#     targetType: 'inline'
+#     script: |
+#       # Write your PowerShell commands here.
 
-      Write-Host No problem reading $(sauce)
-      Write-Host But I cannot read $env:SECRET_SAUCE
-      Write-Host But I can read $(secret.Sauce) (but the log is redacted so I do not spoil the secret)
-      Write-Host Can I read mySecret? $(mySecret)
-      Write-Host Can I read secret.sauce? $(secret.Sauce)
+#       Write-Host No problem reading $(sauce)
+#       Write-Host But I cannot read $env:SECRET_SAUCE
+#       Write-Host But I can read $(secret.Sauce) (but the log is redacted so I do not spoil the secret)
+#       Write-Host Can I read mySecret? $(mySecret)
+#       Write-Host Can I read secret.sauce? $(secret.Sauce)
