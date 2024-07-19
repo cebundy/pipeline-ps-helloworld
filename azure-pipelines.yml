@@ -28,8 +28,8 @@ steps:
 - pwsh: |
     az pipelines build list --organization https://dev.azure.com/v-catherbund/ --project "my project"
   displayName: 'Show build list '
-  env:
-    AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)  
+  # env:
+  #   AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)  
 
 - pwsh: |
    Write-Host "##vso[task.setvariable variable=sauce]peeled tomatoes"
