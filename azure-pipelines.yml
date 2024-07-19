@@ -29,7 +29,7 @@ steps:
     az pipelines build list
   displayName: 'Show build list'
   env:
-    AZURE_DEVOPS_EXT_PAT: $(System.Access  
+    AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)  
 
 - pwsh: |
    Write-Host "##vso[task.setvariable variable=sauce]peeled tomatoes"
