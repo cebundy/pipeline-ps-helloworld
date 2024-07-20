@@ -25,11 +25,21 @@ steps:
 #     arguments: '-sauceArgument "$(sauce)" -secretSauceArgument "$(secret.Sauce)"'
 # # - pwsh: ./VersionAssemblies.ps1
 
+- pwsh: az devops configure --defaults organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject) --use-git-aliases true
+  displayName: 'Set default Azure DevOps organization and project'
+
 - pwsh: |
-    az pipelines build list --organization '$(System.TeamFoundationCollectionUri)' --project '$(System.TeamProject)'
-  displayName: 'Show build list '
+    az pipelines build list
+    git pr list
+  displayName: 'Show build list and PRs'
   env:
-    AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)  
+    AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
+
+# - pwsh: |
+#     az pipelines build list --organization '$(System.TeamFoundationCollectionUri)' --project '$(System.TeamProject)'
+#   displayName: 'Show build list '
+#   env:
+#     AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)  
 
 # - pwsh: |
 #    Write-Host "##vso[task.setvariable variable=sauce]peeled tomatoes"
