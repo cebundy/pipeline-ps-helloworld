@@ -9,7 +9,7 @@ trigger:
 - main
 
 pool:
-  vmImage: windows-latest
+  vmImage: ubuntu-latest
 
 variables:
 - name: var1
@@ -25,10 +25,10 @@ steps:
 #     arguments: '-sauceArgument "$(sauce)" -secretSauceArgument "$(secret.Sauce)"'
 # # - pwsh: ./VersionAssemblies.ps1
 
-- pwsh: az devops configure --defaults organization='$(System.TeamFoundationCollectionUri)' project='$(System.TeamProject)' --use-git-aliases true
+- bash: az devops configure --defaults organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject) --use-git-aliases true
   displayName: 'Set default Azure DevOps organization and project'
 
-- pwsh: |
+- bash: |
     az pipelines build list
     git pr list
   displayName: 'Show build list and PRs'
