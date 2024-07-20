@@ -25,7 +25,7 @@ steps:
 #     arguments: '-sauceArgument "$(sauce)" -secretSauceArgument "$(secret.Sauce)"'
 # # - pwsh: ./VersionAssemblies.ps1
 
-- pwsh: az devops configure --defaults organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject) --use-git-aliases true
+- pwsh: az devops configure --defaults organization='$(System.TeamFoundationCollectionUri)' project='$(System.TeamProject)' --use-git-aliases true
   displayName: 'Set default Azure DevOps organization and project'
 
 - pwsh: |
