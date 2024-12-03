@@ -12,7 +12,7 @@ pool:
 steps:
 - script: |
     echo "Using System.AccessToken to authenticate $(System.AccessToken)"
-    git clone https://$(System.AccessToken)@dev.azure.com/v-catherbund/cebundy%20-%20basic/_git/pipeline-ps-helloworld
+    git clone https://dev.azure.com/v-catherbund/cebundy%20-%20basic/_git/cebundy%20-%20basic
   displayName: 'Clone repository using System.AccessToken'
   env:
     SYSTEM_ACCESSTOKEN: $(System.AccessToken)
