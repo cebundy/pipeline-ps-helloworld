@@ -22,23 +22,23 @@ variables:
 
 steps:
 
-- powershell: |
-    Write-Host "Using an input-macro works: $(mySecret)"
-    Write-Host "Using the env var directly does not work: $env:MYSECRET"
-    Write-Host "Using a global secret var mapped in the pipeline does not work either: $env:GLOBAL_MYSECRET"
-    Write-Host "Using a global non-secret var mapped in the pipeline works: $env:GLOBAL_MY_MAPPED_ENV_VAR" 
-    Write-Host "Using the mapped env var for this task works and is recommended: $env:MY_MAPPED_ENV_VAR"
-  env:
-    MY_MAPPED_ENV_VAR: $(mySecret) # the recommended way to map to an env variable
+# - powershell: |
+#     Write-Host "Using an input-macro works: $(mySecret)"
+#     Write-Host "Using the env var directly does not work: $env:MYSECRET"
+#     Write-Host "Using a global secret var mapped in the pipeline does not work either: $env:GLOBAL_MYSECRET"
+#     Write-Host "Using a global non-secret var mapped in the pipeline works: $env:GLOBAL_MY_MAPPED_ENV_VAR" 
+#     Write-Host "Using the mapped env var for this task works and is recommended: $env:MY_MAPPED_ENV_VAR"
+#   env:
+#     MY_MAPPED_ENV_VAR: $(mySecret) # the recommended way to map to an env variable
 
-- bash: |
-    echo "Using an input-macro works: $(mySecret)"
-    echo "Using the env var directly does not work: $MYSECRET"
-    echo "Using a global secret var mapped in the pipeline does not work either: $GLOBAL_MYSECRET"
-    echo "Using a global non-secret var mapped in the pipeline works: $GLOBAL_MY_MAPPED_ENV_VAR" 
-    echo "Using the mapped env var for this task works and is recommended: $MY_MAPPED_ENV_VAR"
-  env:
-    MY_MAPPED_ENV_VAR: $(mySecret) # the recommended way to map to an env variable
+# - bash: |
+#     echo "Using an input-macro works: $(mySecret)"
+#     echo "Using the env var directly does not work: $MYSECRET"
+#     echo "Using a global secret var mapped in the pipeline does not work either: $GLOBAL_MYSECRET"
+#     echo "Using a global non-secret var mapped in the pipeline works: $GLOBAL_MY_MAPPED_ENV_VAR" 
+#     echo "Using the mapped env var for this task works and is recommended: $MY_MAPPED_ENV_VAR"
+#   env:
+#     MY_MAPPED_ENV_VAR: $(mySecret) # the recommended way to map to an env variable
 
 # - powershell: | 
 #     Write-Host "My first secret variable is $env:FOO_ONE" 
@@ -47,10 +47,10 @@ steps:
 #     FOO_ONE: $(SecretOne)
 
 - powershell: |
-    Write-Host "My first secret variable is $env:USER_NAME" 
-    $env:USER_NAME -eq "something" 
+    Write-Host "My first secret variable is $env:SOMETHING_REALLY_VERY_SUPER_LONG" 
+    $env:SOMETHING_REALLY_VERY_SUPER_LONG -eq "something" 
   env:
-    USER_NAME: $(SecretOne)
+    SOMETHING_REALLY_VERY_SUPER_LONG: $(SecretOne)
 
 - powershell: |
     Write-Host "My first secret variable is $env:VARIABLE1" 
