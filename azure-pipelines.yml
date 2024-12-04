@@ -53,7 +53,7 @@ steps:
     SECRET_SOMETHING_REALLY_VERY_SUPER_SECRET: $(SecretOne)
 
 - bash: |
-    echo "My first secret variable is $SOMETHING_REALLY_VERY_SUPER_SECRET"
+    echo "My first secret variable is: $SOMETHING_REALLY_VERY_SUPER_SECRET"
 #    $SOMETHING_REALLY_VERY_SUPER_SECRET == "something" 
   env:
     SOMETHING_REALLY_VERY_SUPER_SECRET: $(SecretOne)
