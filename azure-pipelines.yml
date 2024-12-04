@@ -57,11 +57,11 @@ steps:
   env:
     SECRETSOMETHING_REALLY_VERY_SUPER: $(SecretOne)
 
-# - powershell: |
-#     Write-Host "My first secret variable is $env:VARIABLE1" 
-#     $env:VARIABLE1 -eq "var1" 
-#   env:
-#     VARIABLE1: $(Var1)
+- powershell: |
+    Write-Host "My first secret variable is $env:SECRET_VARIABLE1" 
+    $env:SECRET_VARIABLE1 -eq "var1" 
+  env:
+    SECRET_VARIABLE1: $(Var1)
 
 # - powershell: |
 #     Write-Host "My first secret variable is $env:VARIABLE2" 
