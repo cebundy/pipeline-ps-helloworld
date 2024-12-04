@@ -47,16 +47,15 @@ steps:
 #     FOO_ONE: $(SecretOne)
 
 - powershell: |
-    Write-Host "My first secret variable is $env:SECRET_SOMETHING_REALLY_VERY_SUPER_SECRET" 
-    $env:SECRET_SOMETHING_REALLY_VERY_SUPER_SECRET -eq "something" 
+    Write-Host "My first secret variable is $env:SECRETSOMETHING_REALLY_VERY_SUPER_SECRET" 
+    $env:SECRETSOMETHING_REALLY_VERY_SUPER_SECRET -eq "something" 
   env:
-    SECRET_SOMETHING_REALLY_VERY_SUPER_SECRET: $(SecretOne)
+    SECRETSOMETHING_REALLY_VERY_SUPER_SECRET: $(SecretOne)
 
 - bash: |
-    echo "My first secret variable is: $SOMETHING_REALLY_VERY_SUPER_SECRET"
-#    $SOMETHING_REALLY_VERY_SUPER_SECRET == "something" 
+    echo "My first secret variable is: $SOMETHING_REALLY_VERY_SUPER"
   env:
-    SOMETHING_REALLY_VERY_SUPER_SECRET: $(SecretOne)
+    SOMETHING_REALLY_VERY_SUPER: $(SecretOne)
 
 # - powershell: |
 #     Write-Host "My first secret variable is $env:VARIABLE1" 
