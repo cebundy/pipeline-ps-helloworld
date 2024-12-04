@@ -17,7 +17,7 @@ pool:
   # env:
   #   SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 variables:
- SECRET_NAME: "super secret" # this will not work because the secret variable needs to be mapped as env
+ NOTSOSECRET_NAME: "super secret" # this will not work because the secret variable needs to be mapped as env
  GLOBAL_MY_MAPPED_ENV_VAR: $(nonSecretVariable) # this works because it's not a secret.
 
 steps:
@@ -54,7 +54,7 @@ steps:
 
 - bash: |
     echo "My first secret variable is: $SECRETSOMETHING_REALLY_VERY_SUPER"
-    echo "SECRET_NAME: $SECRET_NAME"
+    echo "NOTSOSECRET_NAME: $NOTSOSECRET_NAME"
   env:
     SECRETSOMETHING_REALLY_VERY_SUPER: $(SecretOne)
 
