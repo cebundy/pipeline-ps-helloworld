@@ -4,15 +4,38 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+ - main
 
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: |
-    echo "Using System.AccessToken to authenticate $(System.AccessToken)"
-    git clone https://dev.azure.com/v-catherbund/cebundy%20-%20basic/_git/cebundy%20-%20basic
-  displayName: 'Clone repository using System.AccessToken'
+# steps:
+# - script: |
+#     echo "Using System.AccessToken to authenticate $(System.AccessToken)"
+#     git clone https://dev.azure.com/v-catherbund/cebundy%20-%20basic/_git/cebundy%20-%20basic
+#   displayName: 'Clone repository using System.AccessToken'
   # env:
   #   SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+variables:
+ GLOBAL_MYSECRET: $(mySecret) # this will not work because the secret variable needs to be mapped as env
+ GLOBAL_MY_MAPPED_ENV_VAR: $(nonSecretVariable) # this works because it's not a secret.
+
+steps:
+
+- powershell: |
+    Write-Host "Using an input-macro works: $(mySecret)"
+    Write-Host "Using the env var directly does not work: $env:MYSECRET"
+    Write-Host "Using a global secret var mapped in the pipeline does not work either: $env:GLOBAL_MYSECRET"
+    Write-Host "Using a global non-secret var mapped in the pipeline works: $env:GLOBAL_MY_MAPPED_ENV_VAR" 
+    Write-Host "Using the mapped env var for this task works and is recommended: $env:MY_MAPPED_ENV_VAR"
+  env:
+    MY_MAPPED_ENV_VAR: $(mySecret) # the recommended way to map to an env variable
+
+- bash: |
+    echo "Using an input-macro works: $(mySecret)"
+    echo "Using the env var directly does not work: $MYSECRET"
+    echo "Using a global secret var mapped in the pipeline does not work either: $GLOBAL_MYSECRET"
+    echo "Using a global non-secret var mapped in the pipeline works: $GLOBAL_MY_MAPPED_ENV_VAR" 
+    echo "Using the mapped env var for this task works and is recommended: $MY_MAPPED_ENV_VAR"
+  env:
+    MY_MAPPED_ENV_VAR: $(mySecret) # the recommended way to map to an env variable
