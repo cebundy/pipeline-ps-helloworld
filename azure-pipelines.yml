@@ -40,17 +40,11 @@ steps:
   env:
     MY_MAPPED_ENV_VAR: $(mySecret) # the recommended way to map to an env variable
 
-- powershell: | 
-    Write-Host "My first secret variable is $env:FOO_ONE" 
-    $env:FOO_ONE -eq "foo" 
-  env:
-    FOO_ONE: $(SecretOne)
-
-- powershell: | 
-    Write-Host "My first secret variable is $env:FOO_ONE" 
-    $env:FOO_ONE -eq "something" 
-  env:
-    FOO_ONE: $(SecretOne)
+# - powershell: | 
+#     Write-Host "My first secret variable is $env:FOO_ONE" 
+#     $env:FOO_ONE -eq "foo" 
+#   env:
+#     FOO_ONE: $(SecretOne)
 
 - powershell: |
     Write-Host "My first secret variable is $env:SECRET_USER" 
