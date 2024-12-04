@@ -54,6 +54,6 @@ steps:
 
 - powershell: |
     Write-Host "My first secret variable is $env:SECRET_TETRA_TECHNICAL_USER_NAME" 
-    $env:SECRET_USER_NAME -eq "something" 
+    $env:SECRET_USER -eq "something" 
   env:
-    SECRET_USER_NAME: $(SecretOne)
+    SECRET_USER: $(SecretOne)
