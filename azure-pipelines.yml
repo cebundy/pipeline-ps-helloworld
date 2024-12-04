@@ -53,9 +53,9 @@ steps:
     SECRETSOMETHING_REALLY_VERY_SUPER_SECRET: $(SecretOne)
 
 - bash: |
-    echo "My first secret variable is: $SECRET_SOMETHING_REALLY_VERY_SUPER"
+    echo "My first secret variable is: $SECRETSOMETHING_REALLY_VERY_SUPER"
   env:
-    SECRET_SOMETHING_REALLY_VERY_SUPER: $(SecretOne)
+    SECRETSOMETHING_REALLY_VERY_SUPER: $(SecretOne)
 
 # - powershell: |
 #     Write-Host "My first secret variable is $env:VARIABLE1" 
