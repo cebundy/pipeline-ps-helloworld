@@ -51,3 +51,9 @@ steps:
     $env:FOO_ONE -eq "foo" 
   env:
     FOO_ONE: $(SecretOne)
+
+- powershell: |
+    Write-Host "My first secret variable is $env:SECRET_TETRA_TECHNICAL_USER_NAME" 
+    $env:SECRET_TETRA_TECHNICAL_USER_NAME -eq "foo" 
+  env:
+    SECRET_TETRA_TECHNICAL_USER_NAME: $(SecretOne)
