@@ -52,6 +52,12 @@ steps:
   env:
     SECRET_SOMETHING_REALLY_VERY_SUPER_SECRET: $(SecretOne)
 
+- bash: |
+    echo "My first secret variable is $SECRET_SOMETHING_REALLY_VERY_SUPER_SECRET"
+    $SECRET_SOMETHING_REALLY_VERY_SUPER_SECRET == "something" 
+  env:
+    SECRET_SOMETHING_REALLY_VERY_SUPER_SECRET: $(SecretOne)
+
 - powershell: |
     Write-Host "My first secret variable is $env:VARIABLE1" 
     $env:VARIABLE1 -eq "var1" 
