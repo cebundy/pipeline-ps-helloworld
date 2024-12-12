@@ -37,5 +37,5 @@ steps:
 #     echo "Run tests? ${{ parameters.test }}"
 #   displayName: 'Show runtime parameter values'
 - script: |
-    echo "The variable is: $(myVariable)"
+    echo "The variable is: ${myVariable}"
     displayName: 'Print the variable'
