@@ -1,18 +1,18 @@
-parameters:
-- name: image
-  displayName: 'Pool image'
-  default: ubuntu-latest
-  values:
-  - windows-latest
-  - windows-latest
-  - ubuntu-latest
-  - ubuntu-latest
-  - macOS-latest
-  - macOS-latest
-- name: test
-  displayName: Run Tests?
-  type: boolean
-  default: false
+# parameters:
+# - name: image
+#   displayName: 'Pool image'
+#   default: ubuntu-latest
+#   values:
+#   - windows-latest
+#   - windows-latest
+#   - ubuntu-latest
+#   - ubuntu-latest
+#   - macOS-latest
+#   - macOS-latest
+# - name: test
+#   displayName: Run Tests?
+#   type: boolean
+#   default: false
 
 #variables:
   
@@ -24,18 +24,38 @@ parameters:
 
 
 
-trigger:
-- main
+# trigger:
+# - main
 
-pool:
-  vmImage: ubuntu-latest
 
-steps:
+
+#steps:
 # - script: |
 #     echo "Hello, world!"
 #     echo "Pool image: ${{ parameters.image }}"
 #     echo "Run tests? ${{ parameters.test }}"
 #   displayName: 'Show runtime parameter values'
-- script: |
-    echo "The variable is: $ {{ myVariable }}"
-    displayName: 'Print the variable'
+# - script: |
+#     echo "The variable is: $ {{ myVariable }}"
+#     displayName: 'Print the variable'
+
+parameters:
+- name: resourceIds
+  type: object
+  default:
+  - /subscriptions/mysubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/loadBalancers/kubernetes-internal
+  - /subscriptions/mysubscription02/resourceGroups/myResourceGroup02/providers/Microsoft.Network/loadBalancers/kubernetes
+- name: environments
+  type: object
+  default: 
+  - prod1
+  - prod2
+
+trigger:
+- main
+pool:
+  vmImage: ubuntu-latest
+steps:
+- ${{ each env in parameters.environments }}:
+  - ${{ each resourceId in parameters.resourceIds }}:
+      - script: echo ${{ replace(split(resourceId, '/')[8], '-', '_') }}_${{ env }}
