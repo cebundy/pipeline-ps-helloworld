@@ -1,0 +1,28 @@
+# azure-pipelines.yml
+trigger:
+- main
+
+variables:
+- template: variables-template.yml
+
+stages:
+- template: stage-template.yml
+  parameters:
+    name: Dev
+    vmImage: ${{ variables.devVmImage }}
+    steps:
+      - script: echo "Building in Dev"
+- template: stage-template.yml
+  parameters:
+    name: Test
+    vmImage: ${{ variables.testVmImage }}
+    steps:
+      - script: echo "Testing in Test"
+- template: stage-template.yml
+  parameters:
+    name: Prod
+    vmImage: ${{ variables.prodVmImage }}
+    steps:
+      - script: echo "Deploying to Prod"
+        env:
+          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
