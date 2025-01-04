@@ -1,0 +1,10 @@
+parameters:
+  message: ''
+
+steps:
+- task: PowerShell@2
+  inputs:
+    targetType: Inline
+    script: |
+      Write-Host "${{ parameters.message }}"
+      Write-Host "$(Secure)"
