@@ -1,0 +1,19 @@
+# stage-template.yml
+parameters:
+- name: name
+  type: string
+  default: ''
+- name: vmImage
+  type: string
+  default: ''
+- name: steps
+  type: stepList
+  default: []
+
+stages:
+- stage: ${{ parameters.name }}
+  jobs:
+  - job: Build
+    pool:
+      vmImage: ${{ parameters.vmImage }}
+    steps: ${{ parameters.steps }}
