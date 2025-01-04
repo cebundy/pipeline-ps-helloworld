@@ -1,0 +1,9 @@
+# variables-template.yml
+
+variables:
+- name: devVmImage
+  value: 'ubuntu-latest'
+- name: testVmImage
+  value: 'ubuntu-latest'
+- name: prodVmImage
+  value: 'ubuntu-latest'
